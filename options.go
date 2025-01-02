@@ -132,6 +132,28 @@ func WithUserLocation(location Location) RequestOption {
 	}
 }
 
+// WithIncludeAddressCategories provides an option to add a slice of strings that describes the addresses to include in the search results. For example, includeAddressCategories=SubLocality,PostalCode. If you use this option, you must also use resultTypeFilter=Address.
+// Possible Values: Country, AdministrativeArea, SubAdministrativeArea, Locality, SubLocality, PostalCode
+func WithIncludeAddressCategories(categories ...string) RequestOption {
+	return func(v url.Values) {
+		if len(categories) == 0 {
+			return
+		}
+		v.Add("includeAddressCategories", queryParameterString(categories))
+	}
+}
+
+// WithExcludeAddressCategories provides an option to add a slice of strings that describes the addresses to exclude in the search results. For example, excludeAddressCategories=Country,AdministrativeArea. If you use this option, you must also use resultTypeFilter=Address.
+// Possible Values: Country, AdministrativeArea, SubAdministrativeArea, Locality, SubLocality, PostalCode
+func WithExcludeAddressCategories(categories ...string) RequestOption {
+	return func(v url.Values) {
+		if len(categories) == 0 {
+			return
+		}
+		v.Add("excludeAddressCategories", queryParameterString(categories))
+	}
+}
+
 // queryParameterString formats slices of different data types to a string representation that can be used for query parameters.
 func queryParameterString[P []Category | []Location | []Avoid | []string](params P) string {
 	var str = make([]string, len(params))
