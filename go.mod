@@ -1,4 +1,4 @@
-module github.com/jweckschmied/applemaps-go
+module github.com/heavymachinery/applemaps-go
 
 go 1.20
 
