@@ -3,7 +3,7 @@ package token
 import (
 	"time"
 
-	"github.com/golang-jwt/jwt"
+	"github.com/golang-jwt/jwt/v4"
 )
 
 // GenerateJWT creates an Apple MapKit-compliant JWT string, given a pem key (usually the raw content of a `.p8` file),
